@@ -1,0 +1,145 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Apr 09, 2019 at 04:54 PM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `bank_commoncents`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account`
+--
+
+DROP TABLE IF EXISTS `account`;
+CREATE TABLE IF NOT EXISTS `account` (
+  `iban` VARCHAR(30) NOT NULL,
+  `cust_ID` INT(11) NOT NULL,
+  `user_pin` VARCHAR(50) NOT NULL,
+  `acc_type` VARCHAR(20) NOT NULL,
+  `interest_rate` FLOAT NOT NULL,
+  `open_date` DATE NOT NULL,
+  `Balance` DECIMAL(10,0) NOT NULL,
+  `Bank` VARCHAR(30) NOT NULL,
+  PRIMARY KEY (`iban`)
+) ENGINE=INNODB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`iban`, `cust_ID`, `user_pin`, `acc_type`, `interest_rate`, `open_date`, `Balance`, `Bank`) VALUES
+('IE1BOFI1', 1, "339AE3DD9035ABF2AE4409442EEFAA05", 'current account', 0, '2017-06-13', '880', 'Bank of Ireland'),
+('IE1BOFI2', 1, "339AE3DD9035ABF2AE4409442EEFAA05", 'savings account', 1.2, '2017-06-28', '1120', 'Bank of Ireland'),
+('IE1BOFI3', 2, "F354617736AA7FD29DDF99382A4DF5A5", 'current account', 0, '2017-06-13', '920', 'Bank of Ireland'),
+('IE1BOFI4', 2, "1DBFEBD3DF4639C8304BF3CF724BD9B2", 'current account', 1.2, '2017-06-28', '1080', 'Bank of Ireland');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+CREATE TABLE IF NOT EXISTS `customer` (
+  `cust_ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `cust_name` VARCHAR(50) NOT NULL,
+  `cust_email` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(50) NOT NULL,
+  `phone` INT(10) NOT NULL,
+  `address` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`cust_ID`)
+) ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`cust_ID`, `cust_name`, `cust_email`, `password`, `phone`, `address`) VALUES
+(1, 'alex', 'alex@gmail.com', 'alex', 879409371, '1A Kerrymount Rise, Foxrock'),
+(2, 'Faoilean Fortune', 'faoi@gmail.com', 'faoi', 879444455, 'somewhere in Roundwood');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaction`
+--
+
+DROP TABLE IF EXISTS `transaction`;
+CREATE TABLE IF NOT EXISTS `transaction` (
+  `transaction_ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `from_iban` VARCHAR(30) NOT NULL,
+  `to_iban` VARCHAR(30) NOT NULL,
+  `amount` INT(11) NOT NULL,
+  `trans_date` DATE NOT NULL,
+  PRIMARY KEY (`transaction_ID`)
+) ENGINE=INNODB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`transaction_ID`, `from_iban`, `to_iban`, `amount`, `trans_date`) VALUES
+(2, 'IE1BOFI1', 'IE1BOFI2', 5, '2017-05-05'),
+(3, 'IE1BOFI1', 'IE1BOFI2', 5, '2017-05-05'),
+(4, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(5, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(6, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(7, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(8, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(9, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(10, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(11, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(12, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(13, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(14, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(15, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(16, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(17, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(18, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-02-13'),
+(19, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-03-09'),
+(20, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-03-09'),
+(21, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-03-09'),
+(22, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-03-09'),
+(23, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-03-09'),
+(24, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-03-09'),
+(25, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-03-09'),
+(26, 'IE1BOFI1', 'IE1BOFI2', 5, '2019-03-09'),
+(27, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(28, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(29, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(30, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(31, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(32, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(33, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(34, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(35, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(36, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(37, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(38, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(39, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(40, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(41, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17'),
+(42, 'IE1BOFI3', 'IE1BOFI4', 5, '2019-03-17');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
