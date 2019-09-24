@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#11000000">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/profileToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="81dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:background="@drawable/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_alignParentLeft="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_marginLeft="0dp" >
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="5dp"
+            android:text="Profile"
+            android:textColor="@android:color/white"
+            android:textSize="50dp"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:srcCompat="@drawable/premierleaguelogopngtransparent" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/profileToolBar">
+
+        <LinearLayout
+            android:id="@+id/ScrollChild"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Username"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:layout_weight="1"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/usernameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/UsernameText"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:padding="8dp"
+                    android:text="Username: "
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+
+                <EditText
+                    android:id="@+id/UsernameEdit"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/nameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/NameText"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="Name: "
+                    android:padding="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+
+                <EditText
+                    android:id="@+id/NameEdit"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:gravity="center"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/emailLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/EmailText"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:padding="8dp"
+                    android:text="Email: "
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+
+                <EditText
+                    android:id="@+id/EmailEdit"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:gravity="center"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/InfoButton"
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                app:cardCornerRadius="25dp"
+                android:elevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/infoSubText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="Change Info"
+                        android:textColor="#fff"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/accountsText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:layout_weight="1"
+                android:text="Accounts"
+                android:layout_marginTop="35dp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/cAccLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/cAccText"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="Current: "
+                    android:padding="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+
+                <EditText
+                    android:id="@+id/cAccEdit"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:gravity="center"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sAccLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/sAccText"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="Savings:"
+                    android:padding="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+
+                <EditText
+                    android:id="@+id/sAccEdit"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:gravity="center"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/AccountButton"
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                app:cardCornerRadius="25dp"
+                android:elevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/accountSubText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="Change Accounts"
+                        android:textColor="#fff"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/passText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:layout_weight="1"
+                android:text="Password"
+                android:layout_marginTop="35dp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/oldPasswordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/oldPasswordText"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="Old:"
+                    android:padding="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+
+                <EditText
+                    android:id="@+id/oldPasswordEdit"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:gravity="center"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:hint="Old Password"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/newPasswordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/newPasswordText"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="New:"
+                    android:padding="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+
+                <EditText
+                    android:id="@+id/newPasswordEdit"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:gravity="center"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:hint="new Password"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/newPasswordLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/newPasswordText2"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="New:"
+                    android:padding="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+
+                <EditText
+                    android:id="@+id/newPasswordEdit2"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:gravity="center"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:hint="New Password"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/PasswordButton"
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="25dp"
+                android:layout_marginBottom="100dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                app:cardCornerRadius="25dp"
+                android:elevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/passSubText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="Change Password"
+                        android:textColor="#fff"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/spacing"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
