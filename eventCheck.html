@@ -1,0 +1,143 @@
+<html>
+  <head>
+    <title>This is the Script checking for the Events success</title>
+    </head>
+    <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+
+
+      //For DEMO change the date and IP address to show the code is working
+      //Make sure of
+      //---the same WIFI
+      //---Wamp Running
+      //---IP address
+      //---USE NON-CONTINUOUS FUNCTION
+
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyBF5cHzqOafv5Xz9ku2utYX9rq8XAgXJLI",
+            authDomain: "commoncents-190e4.firebaseapp.com",
+            databaseURL: "https://commoncents-190e4.firebaseio.com",
+            projectId: "commoncents-190e4",
+            storageBucket: "commoncents-190e4.appspot.com",
+            messagingSenderId: "136446151144"
+          };
+          firebase.initializeApp(config);
+
+
+
+
+
+
+          setInterval(function(){
+            //Getting date to be used in the API call
+            var today = new Date();
+            var dd = today.getDate();//subtract number for matches if need be//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+              dd = '0' + dd;
+            }
+            if (mm < 10) {
+              mm = '0' + mm;
+            }
+            //Change date here for Demo
+            //dd = '17';
+            today = yyyy + '-' + mm + '-' + dd;
+            console.log(today);
+
+            // Get a reference to the database service
+            //Loop through Firebase records for all the match ID and scores guessed
+            var database = firebase.database().ref().child("Events");
+            database.on('value', function(dss){
+              for (var username in dss.val()) {
+                  for (var eventid in dss.val()[username]) {
+                      // key2 = K_23AEu3cjcIKT1tTHf ???
+                      var guessMatchID = dss.val()[username][eventid].matchID;
+                      var guessHomeScore = dss.val()[username][eventid].HomeScoreGuess;
+                      var guessAwayScore = dss.val()[username][eventid].AwayScoreGuess;
+                      var to_iban = dss.val()[username][eventid].to_iban;
+                      var from_iban = dss.val()[username][eventid].from_iban;
+                      var amount = dss.val()[username][eventid].amount;
+                      console.log(to_iban, from_iban, amount);
+
+                      compareData(guessMatchID, guessHomeScore, guessAwayScore, to_iban, from_iban, amount, username, eventid);
+                   }
+               }
+            });
+          }, 21600000/*86400000*/);
+
+
+
+          function compareData(guessMatchID, guessHomeScore, guessAwayScore, to_iban, from_iban, amount, username, eventid){
+            fetch('https://apifootball.com/api/?action=get_events&from='+today+'&to='+today+'&league_id=62&APIkey=63&APIkey=894774b4eac49f8b7a14425609d7d736048e81188d446a3fbf47630a5c906245')
+            //fetch('https://apifootball.com/api/?action=get_events&from=2016-12-26&to=2016-12-26&league_id=63&APIkey=63&APIkey=894774b4eac49f8b7a14425609d7d736048e81188d446a3fbf47630a5c906245')
+            .then(
+              function(response) {
+                if (response.status !== 200) {
+                  console.log('Looks like there was a problem. Status Code: ' +
+                    response.status);
+                  return;
+                }
+
+                // Examine the text in the response
+                response.json().then(function(data) {
+                    console.log(data);
+                    for(var i =0; i< data.length; i++)
+                    {
+                      var matchID = data[i].match_id;
+                      var homeTeamScore = data[i].match_hometeam_score;
+                      var awayTeamScore = data[i].match_awayteam_score;
+                      //console.log(matchID, homeTeamScore, awayTeamScore);
+                      //console.log(guessMatchID, guessHomeScore, guessAwayScore);
+                      //check the match
+                      if(matchID == guessMatchID)
+                      {
+                          //check scores
+                          if(homeTeamScore == guessHomeScore && awayTeamScore == guessAwayScore)
+                          {
+                            console.log("Correct Guess!");
+                            updateDB(from_iban, to_iban, amount);
+
+                            firebase.database().ref().child("Events").child(username).child(eventid).remove();
+                          }
+                          else{
+                            console.log("Incorrect Guess");
+                            firebase.database().ref().child("Events").child(username).child(eventid).remove();
+                          }
+                          //Exit loop is match found
+                          break;
+                      }else{
+                            console.log("Result Pending");
+                      }
+                    }
+                });
+              }
+            )
+            .catch(function(err) {
+              console.log('Fetch Error :-S', err);
+            });
+          }
+
+
+          function updateDB(from_iban, to_iban, amount)
+          {
+            /*
+            from_iban IE1BOFI1
+            to_iban IE1BOFI2
+            amount 5
+            trans_date today
+            */
+
+            // college IP 147.252.146.153  CHANGES///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // Home IPv4  192.168.1.17
+
+            $.post('https://serene-beach-25172.herokuapp.com/v1/transaction.php',
+            {from_iban: from_iban, to_iban:to_iban, amount: amount, trans_date: today},
+            function(data){
+              console.log(data);
+            });
+          }
+    </script>
+</html>
